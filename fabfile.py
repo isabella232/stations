@@ -532,18 +532,18 @@ def app_template_bootstrap(project_name=None, repository_name=None):
     config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG']
     config['$NEW_PROJECT_FILENAME'] = config['$NEW_PROJECT_SLUG'].replace('-', '_')
 
-    # _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])
+    _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])
 
-    # for k, v in config.items():
-    #     local('sed -i "" \'s|%s|%s|g\' %s' % (k, v, config_files))
+    for k, v in config.items():
+        local('sed -i "" \'s|%s|%s|g\' %s' % (k, v, config_files))
 
-    # local('rm -rf .git')
-    # local('git init')
-    # local('mv PROJECT_README.md README.md')
+    local('rm -rf .git')
+    local('git init')
+    local('mv PROJECT_README.md README.md')
     local('rm *.pyc')
-    local('git add .')
+    local('git add * .gitignore')
     local('git commit -am "Initial import from app-template."')
-    # local('git remote add origin git@github.com:nprapps/%s.git' % config['$NEW_REPOSITORY_NAME'])
+    local('git remote add origin https://github.com/nprapps/%s.git' % config['$NEW_REPOSITORY_NAME'])
     local('git push -u origin master')
 
     local('npm install less universal-jst -g --prefix node_modules')
