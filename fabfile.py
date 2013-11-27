@@ -543,7 +543,7 @@ def app_template_bootstrap(project_name=None, repository_name=None):
     local('rm *.pyc')
     local('git add .')
     local('git commit -am "Initial import from app-template."')
-    local('git remote add origin https://github.com/nprapps/%s.git' % config['$NEW_REPOSITORY_NAME'])
+    local('git remote add origin git@github.com:nprapps/%s.git' % config['$NEW_REPOSITORY_NAME'])
     local('git push -u origin master')
 
     local('npm install less universal-jst -g --prefix node_modules')
